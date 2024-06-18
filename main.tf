@@ -8,11 +8,11 @@ resource "aws_security_group" "sg" {
 resource "aws_security_group_rule" "sg_rules" {
     count = length(var.securitygroup_config.rules)
     security_group_id = aws_security_group.sg.id
-    type = var.aws_security_group_config.rules[count.index].type
-    from_port = var.aws_security_group_config.rules[count.index].from_port
-    to_port = var.aws_security_group_config.rules[count.index].to_port
-    protocol = var.aws_security_group_config.rules[count.index].protocol
-    cidr_blocks = [var.aws_security_group_config.rules[count.index].cidr_block]
+    type = var.securitygroup_config.rules[count.index].type
+    from_port = var.securitygroup_config.rules[count.index].from_port
+    to_port = var.securitygroup_config.rules[count.index].to_port
+    protocol = var.securitygroup_config.rules[count.index].protocol
+    cidr_blocks = [var.securitygroup_config.rules[count.index].cidr_block]
 
     depends_on = [ 
         aws_security_group.sg
